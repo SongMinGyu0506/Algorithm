@@ -1,49 +1,53 @@
-/*BaekJoon RUNTIME ERROR Why?*/
-
 #include <iostream>
+#include <algorithm>
+#include <vector>
 #include <queue>
 
 using namespace std;
 
-int N, M;
-int computer[10][10];
-int visited[10];
-int counter = 0;
-queue<int> q;
+int counting_bfs(int start, vector<vector<int>> graph, bool check_vertex[]) {
+    int counter = -1;
+    queue<int> q;
+    int temp_start = start;
+    q.push(temp_start);
 
-int bfs(int start_idx) {
-	int temp_counter = 0;
-	q.push(start_idx);
-	visited[start_idx] = true;
-
-	while (!q.empty()) {
-		start_idx = q.front();
-		q.pop();
-
-		for (int i = 0; i <= M; i++)
-		{
-			if (computer[start_idx][i] && !visited[i]) {
-				visited[i] = true;
-				q.push(i);
-				temp_counter++;
-			}
-		}
-	}
-	return temp_counter;
+    while(!q.empty()) {
+        temp_start = q.front(); q.pop();
+        for (int i = 0; i < graph[temp_start].size(); i++)
+        {
+            int D1 = graph[temp_start][i];
+            if(check_vertex[D1] == false) {
+                q.push(D1);
+                check_vertex[D1] = true;
+                counter++;
+            }
+        }
+    }
+    return counter;
 }
 
 int main() {
-	cin >> N;
-	cin >> M;
-	for (int i = 0; i < M; i++)
-	{
-		int start, end;
-		cin >> start >> end;
-		computer[start][end] = 1;
-		computer[end][start] = 1;
-	}
-	visited[1] = true;
-	counter = bfs(1);
-	cout << counter << endl;
-	return 0;
+    int V,E;
+
+    cin >> V;
+    cin >> E;
+
+    vector<vector<int>> graph (V+1);
+    bool check_vertex[V+1] = {false};
+
+    for (int i = 0; i < E; i++)
+    {
+        int F1, F2;
+        cin >> F1 >> F2;
+        graph[F1].push_back(F2);
+        graph[F2].push_back(F1);
+    }
+
+    for (int i = 0; i < graph.size(); i++)
+    {
+        stable_sort(graph[i].begin(),graph[i].end());
+    }
+    
+    cout << counting_bfs(1,graph,check_vertex) << endl;
+    return 0;
 }
