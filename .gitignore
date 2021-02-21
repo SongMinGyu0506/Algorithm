@@ -1,0 +1,6 @@
+
+# C/C++ excute file
+*.out
+
+# vscode build/compile
+.vscode
