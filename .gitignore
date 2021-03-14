@@ -4,3 +4,6 @@
 
 # vscode build/compile
 .vscode
+
+#temp ignore
+Kakao_internship.cpp
