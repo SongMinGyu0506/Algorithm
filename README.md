@@ -10,4 +10,4 @@
 ## Main Language
 * C++(g++ 17)
 * Java(OpenJDK 11) (SUB)
-* Python 3.8.2 (SUB)
+* Python 3.8.2
