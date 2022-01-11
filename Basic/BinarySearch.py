@@ -1,4 +1,4 @@
-testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+testArray = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,14,15]
 
 def Recursion_binarySearch(testArray,target):
     max = len(testArray)-1
@@ -25,7 +25,7 @@ def Loop_binarySearch(testArray,target):
 
     while min < max:
         if target == testArray[mid]:
-            return True
+            return mid
         elif target > testArray[mid]:
             min = mid + 1
             mid = (min+max)//2
@@ -36,7 +36,7 @@ def Loop_binarySearch(testArray,target):
 
 print()
 print('Loop')
-print(Loop_binarySearch(testArray,8))
+print(Loop_binarySearch(testArray,14))
 print(Loop_binarySearch(testArray,13))
 print(Loop_binarySearch(testArray,123))
 print(Loop_binarySearch(testArray,-1))
@@ -87,7 +87,7 @@ def Lower_Bound(testArray,target):
 print (Lower_Bound(testArray,14.8))
     
 print("test")
-def upperBound(start, end, key):
+def upperBound(start, end, key,lst):
     while start < end:
         mid = (start + end) // 2
         if lst[mid] == key:
@@ -99,4 +99,4 @@ def upperBound(start, end, key):
     return end
     
 lst = [0, 1, 2, 3, 3, 5, 6, 7, 8]
-print(upperBound(0, len(lst), 3))
+print(upperBound(0, len(lst), 3,lst))
