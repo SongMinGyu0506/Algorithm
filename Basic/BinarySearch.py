@@ -100,3 +100,25 @@ def upperBound(start, end, key,lst):
     
 lst = [0, 1, 2, 3, 3, 5, 6, 7, 8]
 print(upperBound(0, len(lst), 3,lst))
+
+def lowerBound(start,end,target,testArray):
+    while start < end:
+        mid = (start + end) // 2
+        if testArray[mid] == target:
+            if end == mid:
+                break
+            end = mid
+        elif testArray[mid] > target:
+            end = mid - 1
+        elif testArray[mid] < target:
+            start = mid + 1
+    return mid
+
+lst = [0, 1, 2, 3, 3, 5, 6, 7, 8]
+print(lowerBound(0,len(lst),3,lst))
+
+import bisect
+
+lst = [0,1,2,3,4,5,6,7,8,9,10]
+
+print(bisect.bisect(lst,0))
