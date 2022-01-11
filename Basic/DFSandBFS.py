@@ -23,6 +23,7 @@ dfs(graph,1,visitied)
 print()
 from collections import deque
 visitied = [False] * 9
+
 def bfs(graph,v,visited):
     queue = deque([v])
     visited[v] = True
