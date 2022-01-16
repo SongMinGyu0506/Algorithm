@@ -7,5 +7,7 @@ else:
     dn[5] = 1
     for i in range(6,N+1):
         dn[i] = min(dn[i-3]+1,dn[i-5]+1)
-    print(dn[0:N+1])
-    print(dn[N])
+    if dn[N] == float("inf"):
+        print(-1)
+    else:
+        print(dn[N])
