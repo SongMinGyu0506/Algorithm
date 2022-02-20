@@ -1,38 +1,14 @@
-import sys
+A,B,C = map(int,input().split())
 
-
-n = int(input())
-graph = [list(map(int,sys.stdin.readline().split())) for _ in range(n)]
-
-
-m,z,o = 0,0,0
-def sol(y,x,term):
-    global m,z,o
-    this_color = graph[y][x]
-    for dy in range(y,y+term):
-        for dx in range(x,x+term):
-            if this_color != graph[dy][dx]:
-                sol(y+term//3*0,x+term//3*0,term//3)
-                sol(y+term//3*0,x+term//3*1,term//3)
-                sol(y+term//3*0,x+term//3*2,term//3)
-
-                sol(y+term//3*1,x+term//3*0,term//3)
-                sol(y+term//3*1,x+term//3*1,term//3)
-                sol(y+term//3*1,x+term//3*2,term//3)
-
-                sol(y+term//3*2,x+term//3*0,term//3)
-                sol(y+term//3*2,x+term//3*1,term//3)
-                sol(y+term//3*2,x+term//3*2,term//3)
-                return
-    if this_color == -1:
-        m+=1
-    elif this_color == 0:
-        z+=1
+def sol(A,B):
+    if B == 1:
+        return A%C
     else:
-        o+=1
+        temp = sol(A,B//2)
+        if B%2 == 0:
+            return temp**2%C
+        else:
+            return temp**2 * A%C
 
-sol(0,0,n)
 
-print(m)
-print(z)
-print(o)
+print(sol(A,B))
